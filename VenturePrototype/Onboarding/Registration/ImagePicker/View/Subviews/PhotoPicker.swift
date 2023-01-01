@@ -32,9 +32,8 @@ struct PhotoPicker: UIViewControllerRepresentable {
         
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
             if let image = info[.editedImage] as? UIImage {
-                #warning("Check compressionQuality before shipping")
-                guard let data = image.jpegData(compressionQuality: 0.1), let compressedImage = UIImage(data: data) else { return } //can return error
-                photoPicker.selectedImage = compressedImage
+//                guard let data = image.jpegData(compressionQuality: 0.1), let compressedImage = UIImage(data: data) else { return } //can return error
+                photoPicker.selectedImage = image
             } else {
                 // TODO: return error / show alert (user didn't pick an image or something went wrong)
             }

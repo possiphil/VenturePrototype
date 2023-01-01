@@ -13,6 +13,7 @@ struct AuthenticationTextField: View {
     
     var body: some View {
         TextField(placeholder, text: $textInput)
+            .keyboardType(.emailAddress)
             .frame(height: 52)
             .padding(.horizontal)
             .background(Color("PrimaryAccentColor").opacity(0.1))

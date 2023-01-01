@@ -11,14 +11,13 @@ import SwiftUI
 struct ImagePickerButton: View {
     @State private var showImagePicker = false
     @State private var selectedImage: UIImage?
-    @Binding var profileImage: Image?
     
     var body: some View {
         Button {
             showImagePicker.toggle()
         } label: {
-            if let profileImage = profileImage {
-                profileImage
+            if let selectedImage = selectedImage {
+                Image(uiImage: selectedImage)
                     .resizable()
                     .frame(width: 200, height: 200)
                     .scaledToFit()
@@ -37,19 +36,14 @@ struct ImagePickerButton: View {
                     .clipShape(Circle())
             }
         }
-        .sheet(isPresented: $showImagePicker, onDismiss: loadImage) {
+        .sheet(isPresented: $showImagePicker) {
             PhotoPicker(selectedImage: $selectedImage)
         }
-    }
-    
-    func loadImage() {
-        guard let selectedImage = selectedImage else { return }
-        profileImage = Image(uiImage: selectedImage)
     }
 }
 
 struct ImagePickerButton_Previews: PreviewProvider {
     static var previews: some View {
-        ImagePickerButton(profileImage: .constant(nil))
+        ImagePickerButton()
     }
 }

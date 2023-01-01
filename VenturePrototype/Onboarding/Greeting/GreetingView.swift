@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct GreetingView: View {
+    @State private var test = false
+    
     var body: some View {
         NavigationStack {
             ZStack {

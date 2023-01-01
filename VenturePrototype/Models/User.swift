@@ -5,12 +5,14 @@
 //  Created by Philipp Sanktjohanser on 27.12.22.
 //
 
-import Foundation
+import Firebase
+import FirebaseFirestoreSwift
 
 struct User: Identifiable, Decodable {
+    @DocumentID var username: String?
     let id: String
     let name: String
     let birthday: Date
-    let username: String
-    let imageUrl: String?
+    
+    var isCurrentUser: Bool { return Auth.auth().currentUser?.uid == id }
 }
