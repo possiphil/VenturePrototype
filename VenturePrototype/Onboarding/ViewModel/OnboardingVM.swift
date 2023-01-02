@@ -255,22 +255,29 @@ class OnboardingVM: ObservableObject {
     }
     
     // MARK: Upload user profile image
-    func uploadProfileImage(_ image: UIImage?, context: NSManagedObjectContext) {
+    func uploadProfileImage(_ image: UIImage?) {
         guard let image = image else { return publishError(UserError.loadingImageFailed) }
         
         let storageRef = Storage.storage().reference()
         
         guard let data = image.jpegData(compressionQuality: 0.1) else { return publishError(UserError.compressingImageFailed) }
-        let savedImage = ProfileImage(context: context)
-        savedImage.imageData = data
+        
+        let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let url = path.appending(path: "profileImage.jpg")
         
         do {
-            if context.hasChanges {
-                try context.save()
-            }
+            try data.write(to: url, options: .atomic)
         } catch {
             publishError(UserError.savingImageFailed)
         }
+        
+//        do {
+//            if context.hasChanges {
+//                try context.save()
+//            }
+//        } catch {
+//            publishError(UserError.savingImageFailed)
+//        }
         
         guard let displayName = tempUserSession?.displayName else { return publishError(FirebaseError.userNotFound) }
 

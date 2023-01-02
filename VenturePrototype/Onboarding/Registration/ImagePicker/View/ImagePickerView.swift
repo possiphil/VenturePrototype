@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct ImagePickerView: View {
-    @Environment(\.managedObjectContext) var moc
     @EnvironmentObject var onboardingVM: OnboardingVM
     
     @State private var showImagePicker = false
@@ -66,7 +65,7 @@ struct ImagePickerView: View {
                 
                 VStack(spacing: 16) {
                     Button {
-                        onboardingVM.uploadProfileImage(selectedImage, context: moc)
+                        onboardingVM.uploadProfileImage(selectedImage)
                     } label: {
                         Text("Continue")
                             .foregroundColor(isProfileImageMissing() ? .secondary : .primary)

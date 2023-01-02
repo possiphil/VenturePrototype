@@ -11,6 +11,7 @@ import SwiftUI
 @main
 struct VenturePrototypeApp: App {
     @StateObject var onboardingVM = OnboardingVM()
+    // Used to store image in core data - don't put in final version
     @StateObject private var dataController = DataController()
     
     init() {
