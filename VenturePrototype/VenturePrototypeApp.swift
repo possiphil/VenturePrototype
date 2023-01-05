@@ -20,9 +20,10 @@ struct VenturePrototypeApp: App {
     
     var body: some Scene {
         WindowGroup {
-            LaunchScreenView()
-                .environmentObject(onboardingVM)
-                .environment(\.managedObjectContext, dataController.container.viewContext)
+            CoreTabView()
+//            LaunchScreenView()
+//                .environmentObject(onboardingVM)
+//                .environment(\.managedObjectContext, dataController.container.viewContext)
         }
     }
 }

@@ -262,14 +262,14 @@ class OnboardingVM: ObservableObject {
         
         guard let data = image.jpegData(compressionQuality: 0.1) else { return publishError(UserError.compressingImageFailed) }
         
-        let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        let url = path.appending(path: "profileImage.jpg")
-        
-        do {
-            try data.write(to: url, options: .atomic)
-        } catch {
-            publishError(UserError.savingImageFailed)
-        }
+//        let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+//        let url = path.appending(path: "profileImage.jpg")
+//
+//        do {
+//            try data.write(to: url, options: .atomic)
+//        } catch {
+//            publishError(UserError.savingImageFailed)
+//        }
         
 //        do {
 //            if context.hasChanges {
